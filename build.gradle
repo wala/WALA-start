@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+version = '0.1'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'WALA Start',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.shrike', version: '1.3.+'
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.util', version: '1.3.+'
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.core', version: '1.3.+'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+mainClassName = "com.ibm.wala.examples.analysis.SimpleThreadEscapeAnalysis"
