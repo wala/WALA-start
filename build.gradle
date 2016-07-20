@@ -18,7 +18,17 @@ dependencies {
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.shrike', version: '1.3.+'
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.util', version: '1.3.+'
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.core', version: '1.3.+'
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast', version: '1.3.+'
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js', version: '1.3.+'
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js.rhino', version: '1.3.+'
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
 mainClassName = "com.ibm.wala.examples.analysis.SimpleThreadEscapeAnalysis"
+
+run {
+    if(project.hasProperty('appArgs')){
+        args Eval.me(appArgs)
+    }
+}
+
