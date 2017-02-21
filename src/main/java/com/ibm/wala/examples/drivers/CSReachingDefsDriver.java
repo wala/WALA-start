@@ -43,8 +43,17 @@ public class CSReachingDefsDriver {
 	  		"org\\/apache\\/xerces\\/.*\n" + 
 	  		"java\\/security\\/.*\n" + 
 	  		"";
-	  
-	public static void main(String[] args) throws IOException, ClassHierarchyException, IllegalArgumentException, CallGraphBuilderCancelException {
+	  /**
+	   * Usage: CSReachingDefsDriver -scopeFile file_path -mainClass class_name
+	   * 
+	   * Uses main() method of class_name as entrypoint.
+	   * 
+	   * @throws IOException
+	   * @throws ClassHierarchyException
+	   * @throws CallGraphBuilderCancelException
+	   * @throws IllegalArgumentException
+	   */
+	  public static void main(String[] args) throws IOException, ClassHierarchyException, IllegalArgumentException, CallGraphBuilderCancelException {
 	    long start = System.currentTimeMillis();		
 	    Properties p = CommandLine.parse(args);
 	    String scopeFile = p.getProperty("scopeFile");
