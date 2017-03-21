@@ -9,6 +9,7 @@ import com.ibm.wala.ipa.callgraph.impl.Util;
 import com.ibm.wala.ipa.cfg.BasicBlockInContext;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
+import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.ssa.analysis.IExplodedBasicBlock;
 import com.ibm.wala.util.collections.Pair;
@@ -66,7 +67,7 @@ public class CSReachingDefsDriver {
 	    }
 	    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, CSReachingDefsDriver.class.getClassLoader());
 	    scope.setExclusions(new FileOfClasses(new ByteArrayInputStream(EXCLUSIONS.getBytes("UTF-8"))));
-	    IClassHierarchy cha = ClassHierarchy.make(scope);
+	    IClassHierarchy cha = ClassHierarchyFactory.make(scope);
 	    System.out.println(cha.getNumberOfClasses() + " classes");
 	    System.out.println(Warnings.asString());
 	    Warnings.clear();
@@ -75,7 +76,7 @@ public class CSReachingDefsDriver {
 	    options.setEntrypoints(entrypoints);
 	    // you can dial down reflection handling if you like
 	    options.setReflectionOptions(ReflectionOptions.NONE);
-	    AnalysisCache cache = new AnalysisCache();
+	    AnalysisCache cache = new AnalysisCacheImpl();
 	    // other builders can be constructed with different Util methods
 	    CallGraphBuilder builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha, scope);
 //	    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);

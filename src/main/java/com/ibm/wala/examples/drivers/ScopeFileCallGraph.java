@@ -19,6 +19,7 @@ import java.util.Properties;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.ipa.callgraph.AnalysisCache;
+import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.callgraph.CallGraph;
@@ -30,6 +31,7 @@ import com.ibm.wala.ipa.callgraph.impl.DefaultEntrypoint;
 import com.ibm.wala.ipa.callgraph.impl.Util;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
+import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.TypeReference;
@@ -69,7 +71,7 @@ public class ScopeFileCallGraph {
     // use exclusions to eliminate certain library packages
     File exclusionsFile = null;
     AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, exclusionsFile, ScopeFileCallGraph.class.getClassLoader());
-    IClassHierarchy cha = ClassHierarchy.make(scope);
+    IClassHierarchy cha = ClassHierarchyFactory.make(scope);
     System.out.println(cha.getNumberOfClasses() + " classes");
     System.out.println(Warnings.asString());
     Warnings.clear();
@@ -78,7 +80,7 @@ public class ScopeFileCallGraph {
     options.setEntrypoints(entrypoints);
     // you can dial down reflection handling if you like
 //    options.setReflectionOptions(ReflectionOptions.NONE);
-    AnalysisCache cache = new AnalysisCache();
+    AnalysisCache cache = new AnalysisCacheImpl();
     // other builders can be constructed with different Util methods
     CallGraphBuilder builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha, scope);
 //    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);
