@@ -1,13 +1,25 @@
 package com.ibm.wala.examples.drivers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 import com.ibm.wala.dataflow.IFDS.ISupergraph;
 import com.ibm.wala.dataflow.IFDS.TabulationResult;
 import com.ibm.wala.examples.analysis.dataflow.ContextSensitiveReachingDefs;
-import com.ibm.wala.ipa.callgraph.*;
+import com.ibm.wala.ipa.callgraph.AnalysisCache;
+import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
+import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions.ReflectionOptions;
+import com.ibm.wala.ipa.callgraph.AnalysisScope;
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.ipa.callgraph.CallGraph;
+import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
+import com.ibm.wala.ipa.callgraph.CallGraphBuilderCancelException;
+import com.ibm.wala.ipa.callgraph.CallGraphStats;
+import com.ibm.wala.ipa.callgraph.Entrypoint;
 import com.ibm.wala.ipa.callgraph.impl.Util;
 import com.ibm.wala.ipa.cfg.BasicBlockInContext;
-import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
@@ -18,10 +30,6 @@ import com.ibm.wala.util.config.FileOfClasses;
 import com.ibm.wala.util.io.CommandLine;
 import com.ibm.wala.util.warnings.Warnings;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 
 /**
  * Driver for running {@link ContextSensitiveReachingDefs}
@@ -31,7 +39,7 @@ public class CSReachingDefsDriver {
 
 	  // more aggressive exclusions to avoid library blowup
 	  // in interprocedural tests
-	  private static final String EXCLUSIONS = "java\\/awt\\/.*\n" + 
+	  public static final String EXCLUSIONS = "java\\/awt\\/.*\n" + 
 	  		"javax\\/swing\\/.*\n" + 
 	  		"sun\\/awt\\/.*\n" + 
 	  		"sun\\/swing\\/.*\n" + 
