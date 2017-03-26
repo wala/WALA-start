@@ -41,10 +41,6 @@ This will pull in the WALA jars and build the sample code.
   
 We plan to add more examples soon, like examples of doing Android or JavaScript analysis.
 
-### Making it your own
-
-After cloning this repo, feel free to delete the `.git` directory and create your own Git repository.  If you only need a subset of the WALA libraries you can delete the rest from `build.gradle`.  And of course you can delete the example code too.
-
 License
 -------
 
