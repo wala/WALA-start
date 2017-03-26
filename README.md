@@ -39,7 +39,12 @@ This will pull in the WALA jars and build the sample code.
     [Variants of a simple dataflow analysis](https://github.com/msridhar/WALA-start/tree/master/src/main/java/com/ibm/wala/examples/analysis/dataflow), including an [example driver](https://github.com/msridhar/WALA-start/blob/master/src/main/java/com/ibm/wala/examples/drivers/CSReachingDefsDriver.java)
   * [Simple driver](https://github.com/msridhar/WALA-start/blob/master/src/main/java/com/ibm/wala/examples/drivers/ScopeFileCallGraph.java) for building a [call graph](http://wala.sourceforge.net/wiki/index.php/UserGuide:CallGraph) from a [scope file](http://wala.sourceforge.net/wiki/index.php/UserGuide:AnalysisScope)
   
-  
+We plan to add more examples soon, like examples of doing Android or JavaScript analysis.
+
+### Making it your own
+
+After cloning this repo, feel free to delete the `.git` directory and create your own Git repository.  If you only need a subset of the WALA libraries you can delete the rest from `build.gradle`.  And of course you can delete the example code too.
+
 License
 -------
 
