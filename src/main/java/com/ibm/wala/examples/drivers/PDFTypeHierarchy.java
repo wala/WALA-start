@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
-import com.google.common.io.Files;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
