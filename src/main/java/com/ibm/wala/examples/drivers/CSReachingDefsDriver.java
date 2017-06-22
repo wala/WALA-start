@@ -1,12 +1,12 @@
 package com.ibm.wala.examples.drivers;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 import com.ibm.wala.dataflow.IFDS.ISupergraph;
 import com.ibm.wala.dataflow.IFDS.TabulationResult;
 import com.ibm.wala.examples.analysis.dataflow.ContextSensitiveReachingDefs;
+import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisCache;
 import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
@@ -26,7 +26,6 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.ssa.analysis.IExplodedBasicBlock;
 import com.ibm.wala.util.collections.Pair;
 import com.ibm.wala.util.config.AnalysisScopeReader;
-import com.ibm.wala.util.config.FileOfClasses;
 import com.ibm.wala.util.io.CommandLine;
 import com.ibm.wala.util.warnings.Warnings;
 
@@ -37,21 +36,6 @@ import com.ibm.wala.util.warnings.Warnings;
  */
 public class CSReachingDefsDriver {
 
-	  // more aggressive exclusions to avoid library blowup
-	  // in interprocedural tests
-	  public static final String EXCLUSIONS = "java\\/awt\\/.*\n" + 
-	  		"javax\\/swing\\/.*\n" + 
-	  		"sun\\/awt\\/.*\n" + 
-	  		"sun\\/swing\\/.*\n" + 
-	  		"com\\/sun\\/.*\n" + 
-	  		"sun\\/.*\n" + 
-	  		"org\\/netbeans\\/.*\n" + 
-	  		"org\\/openide\\/.*\n" + 
-	  		"com\\/ibm\\/crypto\\/.*\n" + 
-	  		"com\\/ibm\\/security\\/.*\n" + 
-	  		"org\\/apache\\/xerces\\/.*\n" + 
-	  		"java\\/security\\/.*\n" + 
-	  		"";
 	  /**
 	   * Usage: CSReachingDefsDriver -scopeFile file_path -mainClass class_name
 	   * 
@@ -74,7 +58,7 @@ public class CSReachingDefsDriver {
 	      throw new IllegalArgumentException("must specify main class");
 	    }
 	    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, CSReachingDefsDriver.class.getClassLoader());
-	    scope.setExclusions(new FileOfClasses(new ByteArrayInputStream(EXCLUSIONS.getBytes("UTF-8"))));
+	    ExampleUtil.addDefaultExclusions(scope);
 	    IClassHierarchy cha = ClassHierarchyFactory.make(scope);
 	    System.out.println(cha.getNumberOfClasses() + " classes");
 	    System.out.println(Warnings.asString());

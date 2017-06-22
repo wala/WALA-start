@@ -10,7 +10,6 @@
  *******************************************************************************/
 package com.ibm.wala.examples.drivers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +17,7 @@ import java.util.Properties;
 
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
+import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisCache;
 import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
@@ -29,7 +29,6 @@ import com.ibm.wala.ipa.callgraph.CallGraphStats;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
 import com.ibm.wala.ipa.callgraph.impl.DefaultEntrypoint;
 import com.ibm.wala.ipa.callgraph.impl.Util;
-import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
@@ -68,9 +67,9 @@ public class ScopeFileCallGraph {
     if (mainClass != null && entryClass != null) {
       throw new IllegalArgumentException("only specify one of mainClass or entryClass");
     }
-    // use exclusions to eliminate certain library packages
-    File exclusionsFile = null;
-    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, exclusionsFile, ScopeFileCallGraph.class.getClassLoader());
+    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, ScopeFileCallGraph.class.getClassLoader());
+    // set exclusions.  we use these exclusions as standard for handling JDK 8
+    ExampleUtil.addDefaultExclusions(scope);
     IClassHierarchy cha = ClassHierarchyFactory.make(scope);
     System.out.println(cha.getNumberOfClasses() + " classes");
     System.out.println(Warnings.asString());

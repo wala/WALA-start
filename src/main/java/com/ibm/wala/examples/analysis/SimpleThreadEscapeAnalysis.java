@@ -25,7 +25,7 @@ import com.ibm.wala.classLoader.IField;
 import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.classLoader.JarFileModule;
 import com.ibm.wala.client.AbstractAnalysisEngine;
-import com.ibm.wala.ipa.callgraph.AnalysisCache;
+import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.CallGraph;
@@ -180,6 +180,9 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
     // the application and libraries are set, now build the scope...
     //
     buildAnalysisScope();
+
+    // update exclusions
+    ExampleUtil.addDefaultExclusions(scope);
 
     //
     // ...and the class hierarchy
