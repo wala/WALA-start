@@ -21,15 +21,11 @@ On Mac OS X, you can install these requirements by installing
     brew cask install java
     brew install gradle
     
-If you'd prefer to stick with Java 7, everything should work fine.
-Just edit the line `sourceCompatibility = 1.8` in `build.gradle` to
-read `sourceCompatibility = 1.7`.
-
 ### Installation
 
 Clone the repository, and then run:
 
-    gradle compileJava
+    ./gradlew compileJava
     
 This will pull in the WALA jars and build the sample code.
 

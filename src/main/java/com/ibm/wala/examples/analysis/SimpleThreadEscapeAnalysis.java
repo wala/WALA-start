@@ -24,6 +24,7 @@ import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IField;
 import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.classLoader.JarFileModule;
+import com.ibm.wala.classLoader.Language;
 import com.ibm.wala.client.AbstractAnalysisEngine;
 import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
@@ -94,7 +95,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
   @Override
   protected CallGraphBuilder getCallGraphBuilder(
           IClassHierarchy cha, AnalysisOptions options, IAnalysisCacheView cache) {
-    return Util.makeZeroCFABuilder(options, cache, cha, scope);
+    return Util.makeZeroCFABuilder(Language.JAVA, options, cache, cha, scope);
   }
 
   /**
@@ -103,8 +104,10 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
   private void collectJars(File f, Set<JarFile> result) throws IOException {
     if (f.isDirectory()) {
       File[] files = f.listFiles();
-      for (int i = 0; i < files.length; i++) {
-        collectJars(files[i], result);
+      if (files != null) {
+        for (int i = 0; i < files.length; i++) {
+          collectJars(files[i], result);
+        }
       }
     } else if (f.getAbsolutePath().endsWith(".jar")) {
       result.add(new JarFile(f));
@@ -239,7 +242,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
     Collection<IClass> threads = cha.computeSubClasses(TypeReference.JavaLangThread);
     for (Iterator<IClass> clss = threads.iterator(); clss.hasNext();) {
       IClass cls = clss.next();
-      for (Iterator<IMethod> ms = cls.getDeclaredMethods().iterator(); ms.hasNext();) {
+      for (Iterator<? extends IMethod> ms = cls.getDeclaredMethods().iterator(); ms.hasNext();) {
         IMethod m = ms.next();
         if (m.isInit()) {
           Set<CGNode> nodes = cg.getNodes(m.getReference());
