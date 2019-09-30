@@ -18,7 +18,7 @@ repositories {
 dependencies {
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.shrike', version: '1.5.3'
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.util', version: '1.5.3'
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.core', version: '1.5.3'
+    compile group: 'com.ibm.wala', name: 'com.ibm.wala.core', version: '1.5.4'
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast', version: '1.5.3'
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js', version: '1.5.3'
     compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js.rhino', version: '1.5.3'
