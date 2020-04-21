@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'application'
 apply plugin: 'eclipse'
 
@@ -18,19 +18,19 @@ repositories {
 dependencies {
     def walaVersion = '1.5.4'
 
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.shrike', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.util', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.core', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js.rhino', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.js.rhino', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.java', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.cast.java.ecj', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.dalvik', version: walaVersion
-    compile group: 'com.ibm.wala', name: 'com.ibm.wala.scandroid', version: walaVersion
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    implementation "com.ibm.wala:com.ibm.wala.shrike:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.util:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.core:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast.js:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast.js.rhino:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast.js:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast.js.rhino:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast.java:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.cast.java.ecj:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.dalvik:${walaVersion}"
+    implementation "com.ibm.wala:com.ibm.wala.scandroid:${walaVersion}"
+    testImplementation group: 'junit', name: 'junit', version: '4.+'
 }
 
 if (project.hasProperty('mainClass')) {
