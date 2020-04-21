@@ -7,7 +7,7 @@ version = '0.1'
 jar {
     manifest {
         attributes 'Implementation-Title': 'WALA Start',
-                   'Implementation-Version': version
+                   'Implementation-Version': archiveVersion
     }
 }
 
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    def walaVersion = '1.5.4'
+    def walaVersion = '1.5.5'
 
     implementation "com.ibm.wala:com.ibm.wala.shrike:${walaVersion}"
     implementation "com.ibm.wala:com.ibm.wala.util:${walaVersion}"
