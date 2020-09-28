@@ -1,9 +1,6 @@
-plugins {
-    id 'java-library'
-    id 'application'
-    id 'eclipse'
-    id 'com.diffplug.spotless' version '5.6.1'
-}
+apply plugin: 'java-library'
+apply plugin: 'application'
+apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 version = '0.1'
@@ -34,12 +31,6 @@ dependencies {
     implementation "com.ibm.wala:com.ibm.wala.dalvik:${walaVersion}"
     implementation "com.ibm.wala:com.ibm.wala.scandroid:${walaVersion}"
     testImplementation group: 'junit', name: 'junit', version: '4.+'
-}
-
-spotless {
-    java {
-        googleJavaFormat()
-    }
 }
 
 if (project.hasProperty('mainClass')) {
