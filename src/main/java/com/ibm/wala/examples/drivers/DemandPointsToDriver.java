@@ -1,11 +1,8 @@
 package com.ibm.wala.examples.drivers;
 
 import com.ibm.wala.classLoader.CallSiteReference;
-import com.ibm.wala.classLoader.IClass;
-import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.classLoader.Language;
 import com.ibm.wala.demandpa.alg.DemandRefinementPointsTo;
-import com.ibm.wala.demandpa.alg.SimpleDemandPointsTo;
 import com.ibm.wala.demandpa.alg.refinepolicy.NeverRefineCGPolicy;
 import com.ibm.wala.demandpa.alg.refinepolicy.NeverRefineFieldsPolicy;
 import com.ibm.wala.demandpa.alg.refinepolicy.SinglePassRefinementPolicy;
@@ -18,7 +15,6 @@ import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.IAnalysisCacheView;
 import com.ibm.wala.ipa.callgraph.cha.CHACallGraph;
-import com.ibm.wala.ipa.callgraph.impl.Everywhere;
 import com.ibm.wala.ipa.callgraph.impl.Util;
 import com.ibm.wala.ipa.callgraph.propagation.HeapModel;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
@@ -32,7 +28,6 @@ import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.collections.Pair;
 import com.ibm.wala.util.config.AnalysisScopeReader;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -50,7 +45,6 @@ public class DemandPointsToDriver {
     IAnalysisCacheView cache = new AnalysisCacheImpl();
     HeapModel heapModel = Util.makeZeroOneCFABuilder(Language.JAVA, options, cache, cha, scope);
     MemoryAccessMap mam = new SimpleMemoryAccessMap(chaCG, heapModel, false);
-    //    SimpleDemandPointsTo sdpt = new SimpleDemandPointsTo(chaCG, heapModel, mam, cha, options);
     DemandRefinementPointsTo drpt =
         DemandRefinementPointsTo.makeWithDefaultFlowGraph(
             chaCG, heapModel, mam, cha, options, new DummyStateMachine.Factory<>());
