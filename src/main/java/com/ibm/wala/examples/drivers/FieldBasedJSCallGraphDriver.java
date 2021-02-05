@@ -1,5 +1,6 @@
 package com.ibm.wala.examples.drivers;
 
+import com.ibm.wala.cast.js.callgraph.fieldbased.FieldBasedCallGraphBuilder;
 import com.ibm.wala.cast.js.callgraph.fieldbased.flowgraph.vertices.ObjectVertex;
 import com.ibm.wala.cast.js.ipa.callgraph.JSCallGraph;
 import com.ibm.wala.cast.js.ipa.callgraph.JSCallGraphUtil;
@@ -36,10 +37,10 @@ public class FieldBasedJSCallGraphDriver {
     Path path = Paths.get(args[0]);
     FieldBasedCGUtil f = new FieldBasedCGUtil(new CAstRhinoTranslatorFactory());
     URL url = path.toUri().toURL();
-    Pair<JSCallGraph, PointerAnalysis<ObjectVertex>> results =
+    FieldBasedCallGraphBuilder.CallGraphResult results =
         f.buildScriptCG(url, FieldBasedCGUtil.BuilderType.OPTIMISTIC_WORKLIST, null, false);
-    CallGraph CG = results.fst;
+    CallGraph CG = results.getCallGraph();
     System.out.println(CallGraphStats.getStats(CG));
-    System.out.println(CallGraph2JSON.serialize(CG));
+    System.out.println((new CallGraph2JSON()).serialize(CG));
   }
 }

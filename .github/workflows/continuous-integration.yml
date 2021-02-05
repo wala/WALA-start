@@ -1,0 +1,33 @@
+name: Continuous integration
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: "JDK ${{ matrix.java }} on ${{ matrix.os }}"
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            java: 8
+          - os: ubuntu-latest
+            java: 8
+          - os: ubuntu-latest
+            java: 11
+          - os: windows-latest
+            java: 8
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v2
+      - name: 'Set up JDK ${{ matrix.java }}'
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - name: Build and test using Gradle
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: build
