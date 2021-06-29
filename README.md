@@ -14,12 +14,8 @@ Requirements are:
 
   * Java 8
 
-On Mac OS X, you can install these requirements by installing
-[Homebrew](https://brew.sh/) and then running:
+Installation instructions will vary by operating system.
 
-    brew tap AdoptOpenJDK/openjdk
-    brew cask install adoptopenjdk8
-    
 ### Installation
 
 Clone the repository, and then run:
