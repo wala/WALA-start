@@ -7,10 +7,15 @@ import com.ibm.wala.util.config.AnalysisScopeReader;
 
 import java.io.IOException;
 
-import static com.ibm.wala.util.config.AnalysisScopeReader.makeJavaBinaryAnalysisScope;
+import com.ibm.wala.util.config.AnalysisScopeReader;
 
 public class AnalysisScopeExamples {
+    /**
+     * @param classPath takes in location of a class file through a string format rather than a JSON file
+     * @return AnaylsisScope object created by makeJavaBinaryAnalysisScope
+     * @throws IOException
+     */
     AnalysisScope makeAnalysisScope(String classPath) throws IOException{
-       return makeJavaBinaryAnalysisScope(classPath, null);
+       return AnalysisScopeReader.makeJavaBinaryAnalysisScope(classPath, null);
     }
 }
