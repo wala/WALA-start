@@ -1,4 +1,4 @@
-package com.ibm.wala.examples.AnalysisScopeExamples;
+package com.ibm.wala.examples.analysisscope;
 
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
@@ -12,9 +12,9 @@ import com.ibm.wala.util.config.AnalysisScopeReader;
 //for more information, please check out https://github.com/wala/WALA/wiki/Analysis-Scope
 
 
-public class AnalysisScopeExamples {
+public class analysisscope {
     /**
-     * @param classPath takes in location of a class file through a string format rather than a JSON file
+     * @param classPath paths of jars to include in analysis scope, formatted as a Java classpath
      * @return AnaylsisScope object created by makeJavaBinaryAnalysisScope
      * @throws IOException
      */
@@ -30,6 +30,7 @@ public class AnalysisScopeExamples {
      * @throws IOException
      */
     AnalysisScope makeAnalysisScope(String classPath, String exceptionFile) throws IOException{
-        return AnalysisScopeReader.makeJavaBinaryAnalysisScope(classPath, new File(exceptionFile));
+        File exception = new File(exceptionFile);
+        return AnalysisScopeReader.readJavaScope(classPath, exception,  null);
     }
 }
