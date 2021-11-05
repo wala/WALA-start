@@ -9,10 +9,14 @@ import java.io.File;
 import java.io.IOException;
 import com.ibm.wala.util.config.AnalysisScopeReader;
 
-//for more information, please check out https://github.com/wala/WALA/wiki/Analysis-Scope
+/**
+ * This file is an example of 2 ways to create an analysis scope.
+ * for more information on analysis scopes, please check out https://github.com/wala/WALA/wiki/Analysis-Scope
+ *
+ */
 
 
-public class analysisscope {
+public class AnalysisScopeExample {
     /**
      * @param classPath paths of jars to include in analysis scope, formatted as a Java classpath
      * @return AnaylsisScope object created by makeJavaBinaryAnalysisScope
@@ -24,13 +28,13 @@ public class analysisscope {
 
     /**
      *
-     * @param classPath Location of a scope file in string form
-     * @param exceptionFile location of an exception file
+     * @param scopeFilePath Location of a scope file in string form
+     * @param exceptionFilePath location of an exception file
      * @return return an analysis scope object
      * @throws IOException
      */
-    AnalysisScope makeAnalysisScope(String classPath, String exceptionFile) throws IOException{
-        File exception = new File(exceptionFile);
-        return AnalysisScopeReader.readJavaScope(classPath, exception,  null);
+    AnalysisScope makeAnalysisScope(String scopeFilePath, String exceptionFilePath) throws IOException{
+        File exception = new File(exceptionFilePath);
+        return AnalysisScopeReader.readJavaScope(scopeFilePath, exception,  AnalysisScopeExample.class.getClassLoader());
     }
 }
