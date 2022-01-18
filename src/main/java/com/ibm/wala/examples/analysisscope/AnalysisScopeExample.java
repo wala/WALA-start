@@ -29,12 +29,12 @@ public class AnalysisScopeExample {
     /**
      *
      * @param scopeFilePath Location of a scope file in string form
-     * @param exceptionFilePath location of an exception file
+     * @param exclusionFilePath location of an exception file
      * @return return an analysis scope object
      * @throws IOException
      */
-    AnalysisScope makeAnalysisScope(String scopeFilePath, String exceptionFilePath) throws IOException{
-        File exception = new File(exceptionFilePath);
+    AnalysisScope makeAnalysisScope(String scopeFilePath, String exclusionFilePath) throws IOException{
+        File exception = new File(exclusionFilePath);
         return AnalysisScopeReader.readJavaScope(scopeFilePath, exception,  AnalysisScopeExample.class.getClassLoader());
     }
 }
