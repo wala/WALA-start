@@ -12,9 +12,9 @@ modify it to suit your own needs.
 
 Requirements are:
 
-  * Java 8
+  * Java 8 or Java 11
 
-Installation instructions will vary by operating system.
+**Note**: If you want to run the `SourceDirCallGraph` driver, you should run on Java 11 to avoid issues with Eclipse dependencies (see https://github.com/wala/WALA/issues/1083).  Installation instructions for Java will vary by operating system.
 
 ### Installation
 
@@ -28,8 +28,9 @@ This will pull in the WALA jars and build the sample code.
 
   * [Variants of a simple dataflow analysis](https://github.com/msridhar/WALA-start/tree/master/src/main/java/com/ibm/wala/examples/analysis/dataflow), including an [example driver](https://github.com/msridhar/WALA-start/blob/master/src/main/java/com/ibm/wala/examples/drivers/CSReachingDefsDriver.java)
   * [Simple driver](https://github.com/msridhar/WALA-start/blob/master/src/main/java/com/ibm/wala/examples/drivers/ScopeFileCallGraph.java) for building a [call graph](http://wala.sourceforge.net/wiki/index.php/UserGuide:CallGraph) from a [scope file](http://wala.sourceforge.net/wiki/index.php/UserGuide:AnalysisScope)
+  * [`SourceDirCallGraph` Driver](https://github.com/wala/WALA-start/blob/master/src/main/java/com/ibm/wala/examples/drivers/SourceDirCallGraph.java) for constructing a call graph from a directory of source code.
   
-We plan to add more examples soon, like examples of doing Android or JavaScript analysis.
+See the [`drivers` folder](https://github.com/wala/WALA-start/tree/master/src/main/java/com/ibm/wala/examples/drivers) for other examples.
 
 License
 -------
