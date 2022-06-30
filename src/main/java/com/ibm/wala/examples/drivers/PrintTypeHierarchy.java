@@ -10,11 +10,11 @@
  *******************************************************************************/
 package com.ibm.wala.examples.drivers;
 
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
-import com.ibm.wala.util.config.AnalysisScopeReader;
 
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ public class PrintTypeHierarchy {
 
   public static void main(String[] args) throws IOException, ClassHierarchyException {
     String classpath = args[0];
-    AnalysisScope scope = AnalysisScopeReader.makeJavaBinaryAnalysisScope(classpath, null);
+    AnalysisScope scope = AnalysisScopeReader.instance.makeJavaBinaryAnalysisScope(classpath, null);
     ClassHierarchy cha = ClassHierarchyFactory.make(scope);
     System.out.println(cha);
   }

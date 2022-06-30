@@ -10,13 +10,11 @@
  *******************************************************************************/
 package com.ibm.wala.examples.drivers;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Properties;
-
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
+import com.ibm.wala.core.util.strings.StringStuff;
+import com.ibm.wala.core.util.warnings.Warnings;
 import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisCache;
 import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
@@ -29,15 +27,18 @@ import com.ibm.wala.ipa.callgraph.CallGraphStats;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
 import com.ibm.wala.ipa.callgraph.impl.DefaultEntrypoint;
 import com.ibm.wala.ipa.callgraph.impl.Util;
+import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.TypeReference;
-import com.ibm.wala.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.io.CommandLine;
-import com.ibm.wala.util.strings.StringStuff;
-import com.ibm.wala.util.warnings.Warnings;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Properties;
 
 /**
  * Driver that constructs a call graph for an application specified via a scope file.  
@@ -67,7 +68,7 @@ public class ScopeFileCallGraph {
     if (mainClass != null && entryClass != null) {
       throw new IllegalArgumentException("only specify one of mainClass or entryClass");
     }
-    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, ScopeFileCallGraph.class.getClassLoader());
+    AnalysisScope scope = AnalysisScopeReader.instance.readJavaScope(scopeFile, null, ScopeFileCallGraph.class.getClassLoader());
     // set exclusions.  we use these exclusions as standard for handling JDK 8
     ExampleUtil.addDefaultExclusions(scope);
     IClassHierarchy cha = ClassHierarchyFactory.make(scope);
@@ -75,13 +76,13 @@ public class ScopeFileCallGraph {
     System.out.println(Warnings.asString());
     Warnings.clear();
     AnalysisOptions options = new AnalysisOptions();
-    Iterable<Entrypoint> entrypoints = entryClass != null ? makePublicEntrypoints(scope, cha, entryClass) : Util.makeMainEntrypoints(scope, cha, mainClass);
+    Iterable<Entrypoint> entrypoints = entryClass != null ? makePublicEntrypoints(cha, entryClass) : Util.makeMainEntrypoints(cha, mainClass);
     options.setEntrypoints(entrypoints);
     // you can dial down reflection handling if you like
 //    options.setReflectionOptions(ReflectionOptions.NONE);
     AnalysisCache cache = new AnalysisCacheImpl();
     // other builders can be constructed with different Util methods
-    CallGraphBuilder builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha, scope);
+    CallGraphBuilder<InstanceKey> builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha);
 //    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);
 //    CallGraphBuilder builder = Util.makeVanillaNCFABuilder(2, options, cache, cha, scope);
     System.out.println("building call graph...");
@@ -92,8 +93,8 @@ public class ScopeFileCallGraph {
     System.out.println(CallGraphStats.getStats(cg));
   }
 
-  private static Iterable<Entrypoint> makePublicEntrypoints(AnalysisScope scope, IClassHierarchy cha, String entryClass) {
-    Collection<Entrypoint> result = new ArrayList<Entrypoint>();
+  private static Iterable<Entrypoint> makePublicEntrypoints(IClassHierarchy cha, String entryClass) {
+    Collection<Entrypoint> result = new ArrayList<>();
     IClass klass = cha.lookupClass(TypeReference.findOrCreate(ClassLoaderReference.Application,
         StringStuff.deployment2CanonicalTypeString(entryClass)));
     for (IMethod m : klass.getDeclaredMethods()) {
