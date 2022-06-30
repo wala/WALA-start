@@ -16,6 +16,8 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 import com.ibm.wala.classLoader.IClass;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
+import com.ibm.wala.core.viz.PDFViewUtil;
 import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
@@ -24,12 +26,10 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.WalaException;
 import com.ibm.wala.util.collections.CollectionFilter;
-import com.ibm.wala.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.graph.Graph;
 import com.ibm.wala.util.graph.GraphSlicer;
 import com.ibm.wala.util.graph.impl.SlowSparseNumberedGraph;
-import com.ibm.wala.viz.DotUtil;
-import com.ibm.wala.viz.PDFViewUtil;
+import com.ibm.wala.util.viz.DotUtil;
 
 /**
  * 
@@ -42,9 +42,6 @@ public class PDFTypeHierarchy {
   // This example takes one command-line argument, so args[1] should be the "-classpath" parameter
   final static int CLASSPATH_INDEX = 1;  
 
-  public final static String DOT_FILE = "temp.dt";
-
-  private final static String PDF_FILE = "th.pdf";
 
   public static void main(String[] args) throws IOException {
     run(args);
@@ -54,7 +51,7 @@ public class PDFTypeHierarchy {
     try {
       validateCommandLine(args);
       String classpath = args[CLASSPATH_INDEX];
-      AnalysisScope scope = AnalysisScopeReader.makeJavaBinaryAnalysisScope(classpath, null);
+      AnalysisScope scope = AnalysisScopeReader.instance.makeJavaBinaryAnalysisScope(classpath, null);
       ExampleUtil.addDefaultExclusions(scope);
 
       // invoke WALA to build a class hierarchy
@@ -63,7 +60,6 @@ public class PDFTypeHierarchy {
       Graph<IClass> g = typeHierarchy2Graph(cha);
 
       g = pruneForAppLoader(g);
-      //String dotFile = "/tmp" + File.separatorChar + DOT_FILE;
       String dotFile = File.createTempFile("out", ".dt").getAbsolutePath();
       String pdfFile = File.createTempFile("out", ".pdf").getAbsolutePath();
       String dotExe = "dot";
@@ -78,7 +74,7 @@ public class PDFTypeHierarchy {
     }
   }
 
-  public static <T> Graph<T> pruneGraph(Graph<T> g, Predicate<T> f) throws WalaException {
+  public static <T> Graph<T> pruneGraph(Graph<T> g, Predicate<T> f) {
     Collection<T> slice = GraphSlicer.slice(g, f);
     return GraphSlicer.prune(g, new CollectionFilter<>(slice));
   }
@@ -87,11 +83,7 @@ public class PDFTypeHierarchy {
    * Restrict g to nodes from the Application loader
    */
   public static Graph<IClass> pruneForAppLoader(Graph<IClass> g) throws WalaException {
-    Predicate<IClass> f = new Predicate<IClass>() {
-      @Override public boolean test(IClass c) {
-        return (c.getClassLoader().getReference().equals(ClassLoaderReference.Application));
-      }
-    };
+    Predicate<IClass> f = c -> (c.getClassLoader().getReference().equals(ClassLoaderReference.Application));
     return pruneGraph(g, f);
   }
   

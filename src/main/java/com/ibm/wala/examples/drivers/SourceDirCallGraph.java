@@ -7,6 +7,7 @@ import com.ibm.wala.cast.java.translator.jdt.ecj.ECJClassLoaderFactory;
 import com.ibm.wala.classLoader.ClassLoaderFactory;
 import com.ibm.wala.classLoader.SourceDirectoryTreeModule;
 import com.ibm.wala.classLoader.SourceFileModule;
+import com.ibm.wala.core.util.warnings.Warnings;
 import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions.ReflectionOptions;
@@ -25,7 +26,6 @@ import com.ibm.wala.properties.WalaProperties;
 import com.ibm.wala.ssa.SymbolTable;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.io.CommandLine;
-import com.ibm.wala.util.warnings.Warnings;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class SourceDirCallGraph {
     // CallGraphBuilder builder = new ZeroCFABuilderFactory().make(options, cache,
     // cha, scope,
     // false);
-    CallGraphBuilder<?> builder = new ZeroOneContainerCFABuilderFactory().make(options, cache, cha, scope);
+    CallGraphBuilder<?> builder = new ZeroOneContainerCFABuilderFactory().make(options, cache, cha);
     System.out.println("building call graph...");
     CallGraph cg = builder.makeCallGraph(options, null);
     long end = System.currentTimeMillis();
@@ -119,8 +119,6 @@ public class SourceDirCallGraph {
   }
 
   protected Iterable<Entrypoint> getEntrypoints(String mainClass, IClassHierarchy cha) {
-    Iterable<Entrypoint> entrypoints =
-        Util.makeMainEntrypoints(JavaSourceAnalysisScope.SOURCE, cha, new String[] {mainClass});
-    return entrypoints;
+    return Util.makeMainEntrypoints(JavaSourceAnalysisScope.SOURCE, cha, new String[] {mainClass});
   }
 }
