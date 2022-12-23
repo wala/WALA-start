@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    def walaVersion = '1.5.8'
+    def walaVersion = '1.5.9'
 
     implementation "com.ibm.wala:com.ibm.wala.shrike:${walaVersion}"
     implementation "com.ibm.wala:com.ibm.wala.util:${walaVersion}"
