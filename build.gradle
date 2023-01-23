@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'application'
 apply plugin: 'eclipse'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 version = '0.1'
 jar {
     manifest {
