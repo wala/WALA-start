@@ -10,11 +10,9 @@ modify it to suit your own needs.
 
 ### Requirements
 
-Requirements are:
+Requirements are a minimum JDK 11 JVM.
 
-  * Java 8 or Java 11
-
-**Note**: If you want to run the `SourceDirCallGraph` driver, you should run on Java 11 to avoid issues with Eclipse dependencies (see https://github.com/wala/WALA/issues/1083).  Installation instructions for Java will vary by operating system.
+**Note**: If you want to run the `SourceDirCallGraph` driver, you must run on Java 17 minimum, as of [WALA 1.6.4](https://github.com/wala/WALA/releases/tag/v1.6.4).
 
 ### Installation
 
