@@ -13,10 +13,11 @@ jar {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
-    def walaVersion = '1.6.4'
+    def walaVersion = '1.6.5'
 
     implementation "com.ibm.wala:com.ibm.wala.shrike:${walaVersion}"
     implementation "com.ibm.wala:com.ibm.wala.util:${walaVersion}"
