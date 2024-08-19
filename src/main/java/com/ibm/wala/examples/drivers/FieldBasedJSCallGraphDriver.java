@@ -8,7 +8,6 @@ import com.ibm.wala.ipa.callgraph.CallGraph;
 import com.ibm.wala.ipa.callgraph.CallGraphStats;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.WalaException;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -34,6 +33,6 @@ public class FieldBasedJSCallGraphDriver {
         f.buildScriptCG(url, FieldBasedCGUtil.BuilderType.OPTIMISTIC_WORKLIST, null, false);
     CallGraph CG = results.getCallGraph();
     System.out.println(CallGraphStats.getStats(CG));
-    System.out.println((new CallGraph2JSON()).serialize(CG));
+    System.out.println(new CallGraph2JSON().serialize(CG));
   }
 }

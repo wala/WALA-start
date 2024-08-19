@@ -14,8 +14,6 @@ import java.io.IOException;
 
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
-import com.ibm.wala.core.util.config.AnalysisScopeReader;
-import com.ibm.wala.core.util.ref.ReferenceCleanser;
 import com.ibm.wala.ipa.callgraph.AnalysisCacheImpl;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
@@ -24,7 +22,9 @@ import com.ibm.wala.ipa.callgraph.impl.Everywhere;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.perf.Stopwatch;
+import com.ibm.wala.core.util.ref.ReferenceCleanser;
 
 /**
  * An analysis skeleton that simply constructs IRs for all methods in a class hierarchy. Illustrates the use of

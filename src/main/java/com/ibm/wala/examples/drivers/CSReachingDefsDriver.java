@@ -3,8 +3,6 @@ package com.ibm.wala.examples.drivers;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.ibm.wala.core.util.config.AnalysisScopeReader;
-import com.ibm.wala.core.util.warnings.Warnings;
 import com.ibm.wala.dataflow.IFDS.ISupergraph;
 import com.ibm.wala.dataflow.IFDS.TabulationResult;
 import com.ibm.wala.examples.analysis.dataflow.ContextSensitiveReachingDefs;
@@ -27,7 +25,9 @@ import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.ssa.analysis.IExplodedBasicBlock;
 import com.ibm.wala.util.collections.Pair;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.io.CommandLine;
+import com.ibm.wala.core.util.warnings.Warnings;
 
 
 /**

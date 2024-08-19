@@ -16,8 +16,6 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 import com.ibm.wala.classLoader.IClass;
-import com.ibm.wala.core.util.config.AnalysisScopeReader;
-import com.ibm.wala.core.viz.PDFViewUtil;
 import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
@@ -26,10 +24,12 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.WalaException;
 import com.ibm.wala.util.collections.CollectionFilter;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.graph.Graph;
 import com.ibm.wala.util.graph.GraphSlicer;
 import com.ibm.wala.util.graph.impl.SlowSparseNumberedGraph;
 import com.ibm.wala.util.viz.DotUtil;
+import com.ibm.wala.core.viz.PDFViewUtil;
 
 /**
  * 
