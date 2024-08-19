@@ -42,7 +42,7 @@ import com.ibm.wala.ssa.IRFactory;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.WalaException;
 import com.ibm.wala.util.collections.HashSetFactory;
-import com.ibm.wala.util.io.FileProvider;
+import com.ibm.wala.core.util.io.FileProvider;
 
 /**
  * TODO this class is a mess. rewrite.

@@ -22,9 +22,9 @@ import com.ibm.wala.ipa.callgraph.impl.Everywhere;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
-import com.ibm.wala.util.config.AnalysisScopeReader;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.perf.Stopwatch;
-import com.ibm.wala.util.ref.ReferenceCleanser;
+import com.ibm.wala.core.util.ref.ReferenceCleanser;
 
 /**
  * An analysis skeleton that simply constructs IRs for all methods in a class hierarchy. Illustrates the use of
@@ -59,7 +59,7 @@ public class ConstructAllIRs {
     // measure running time
     Stopwatch s = new Stopwatch();
     s.start();
-    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, ConstructAllIRs.class.getClassLoader());
+    AnalysisScope scope = AnalysisScopeReader.instance.readJavaScope(scopeFile, null, ConstructAllIRs.class.getClassLoader());
 
     // build a type hierarchy
     System.out.print("building class hierarchy...");

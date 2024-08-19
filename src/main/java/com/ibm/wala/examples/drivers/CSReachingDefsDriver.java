@@ -25,9 +25,9 @@ import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.ssa.analysis.IExplodedBasicBlock;
 import com.ibm.wala.util.collections.Pair;
-import com.ibm.wala.util.config.AnalysisScopeReader;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.io.CommandLine;
-import com.ibm.wala.util.warnings.Warnings;
+import com.ibm.wala.core.util.warnings.Warnings;
 
 
 /**
@@ -57,7 +57,7 @@ public class CSReachingDefsDriver {
 	    if (mainClass == null) {
 	      throw new IllegalArgumentException("must specify main class");
 	    }
-	    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, CSReachingDefsDriver.class.getClassLoader());
+	    AnalysisScope scope = AnalysisScopeReader.instance.readJavaScope(scopeFile, null, CSReachingDefsDriver.class.getClassLoader());
 	    ExampleUtil.addDefaultExclusions(scope);
 	    IClassHierarchy cha = ClassHierarchyFactory.make(scope);
 	    System.out.println(cha.getNumberOfClasses() + " classes");

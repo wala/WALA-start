@@ -24,12 +24,12 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.WalaException;
 import com.ibm.wala.util.collections.CollectionFilter;
-import com.ibm.wala.util.config.AnalysisScopeReader;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.graph.Graph;
 import com.ibm.wala.util.graph.GraphSlicer;
 import com.ibm.wala.util.graph.impl.SlowSparseNumberedGraph;
-import com.ibm.wala.viz.DotUtil;
-import com.ibm.wala.viz.PDFViewUtil;
+import com.ibm.wala.util.viz.DotUtil;
+import com.ibm.wala.core.viz.PDFViewUtil;
 
 /**
  * 
@@ -54,7 +54,7 @@ public class PDFTypeHierarchy {
     try {
       validateCommandLine(args);
       String classpath = args[CLASSPATH_INDEX];
-      AnalysisScope scope = AnalysisScopeReader.makeJavaBinaryAnalysisScope(classpath, null);
+      AnalysisScope scope = AnalysisScopeReader.instance.makeJavaBinaryAnalysisScope(classpath, null);
       ExampleUtil.addDefaultExclusions(scope);
 
       // invoke WALA to build a class hierarchy

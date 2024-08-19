@@ -34,10 +34,10 @@ import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.TypeReference;
-import com.ibm.wala.util.config.AnalysisScopeReader;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.util.io.CommandLine;
-import com.ibm.wala.util.strings.StringStuff;
-import com.ibm.wala.util.warnings.Warnings;
+import com.ibm.wala.core.util.strings.StringStuff;
+import com.ibm.wala.core.util.warnings.Warnings;
 
 /**
  * Driver that constructs a call graph for an application specified via a scope file.  
@@ -67,7 +67,7 @@ public class ScopeFileCallGraph {
     if (mainClass != null && entryClass != null) {
       throw new IllegalArgumentException("only specify one of mainClass or entryClass");
     }
-    AnalysisScope scope = AnalysisScopeReader.readJavaScope(scopeFile, null, ScopeFileCallGraph.class.getClassLoader());
+    AnalysisScope scope = AnalysisScopeReader.instance.readJavaScope(scopeFile, null, ScopeFileCallGraph.class.getClassLoader());
     // set exclusions.  we use these exclusions as standard for handling JDK 8
     ExampleUtil.addDefaultExclusions(scope);
     IClassHierarchy cha = ClassHierarchyFactory.make(scope);
