@@ -64,13 +64,13 @@ public class CSReachingDefsDriver {
 	    System.out.println(Warnings.asString());
 	    Warnings.clear();
 	    AnalysisOptions options = new AnalysisOptions();
-	    Iterable<Entrypoint> entrypoints = Util.makeMainEntrypoints(scope, cha, mainClass);
+	    Iterable<Entrypoint> entrypoints = Util.makeMainEntrypoints(cha, mainClass);
 	    options.setEntrypoints(entrypoints);
 	    // you can dial down reflection handling if you like
 	    options.setReflectionOptions(ReflectionOptions.NONE);
 	    AnalysisCache cache = new AnalysisCacheImpl();
 	    // other builders can be constructed with different Util methods
-	    CallGraphBuilder builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha, scope);
+	    CallGraphBuilder builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha);
 //	    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);
 //	    CallGraphBuilder builder = Util.makeVanillaNCFABuilder(2, options, cache, cha, scope);
 	    System.out.println("building call graph...");

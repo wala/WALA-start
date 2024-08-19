@@ -42,9 +42,6 @@ public class PDFTypeHierarchy {
   // This example takes one command-line argument, so args[1] should be the "-classpath" parameter
   final static int CLASSPATH_INDEX = 1;  
 
-  public final static String DOT_FILE = "temp.dt";
-
-  private final static String PDF_FILE = "th.pdf";
 
   public static void main(String[] args) throws IOException {
     run(args);
@@ -63,7 +60,6 @@ public class PDFTypeHierarchy {
       Graph<IClass> g = typeHierarchy2Graph(cha);
 
       g = pruneForAppLoader(g);
-      //String dotFile = "/tmp" + File.separatorChar + DOT_FILE;
       String dotFile = File.createTempFile("out", ".dt").getAbsolutePath();
       String pdfFile = File.createTempFile("out", ".pdf").getAbsolutePath();
       String dotExe = "dot";
@@ -78,7 +74,7 @@ public class PDFTypeHierarchy {
     }
   }
 
-  public static <T> Graph<T> pruneGraph(Graph<T> g, Predicate<T> f) throws WalaException {
+  public static <T> Graph<T> pruneGraph(Graph<T> g, Predicate<T> f) {
     Collection<T> slice = GraphSlicer.slice(g, f);
     return GraphSlicer.prune(g, new CollectionFilter<>(slice));
   }
@@ -87,11 +83,7 @@ public class PDFTypeHierarchy {
    * Restrict g to nodes from the Application loader
    */
   public static Graph<IClass> pruneForAppLoader(Graph<IClass> g) throws WalaException {
-    Predicate<IClass> f = new Predicate<IClass>() {
-      @Override public boolean test(IClass c) {
-        return (c.getClassLoader().getReference().equals(ClassLoaderReference.Application));
-      }
-    };
+    Predicate<IClass> f = c -> (c.getClassLoader().getReference().equals(ClassLoaderReference.Application));
     return pruneGraph(g, f);
   }
   
