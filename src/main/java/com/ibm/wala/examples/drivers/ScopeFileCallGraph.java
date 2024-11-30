@@ -22,9 +22,9 @@ import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.callgraph.CallGraph;
 import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
-import com.ibm.wala.ipa.callgraph.CallGraphBuilderCancelException;
 import com.ibm.wala.ipa.callgraph.CallGraphStats;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
+import com.ibm.wala.ipa.callgraph.cha.CHACallGraph;
 import com.ibm.wala.ipa.callgraph.impl.DefaultEntrypoint;
 import com.ibm.wala.ipa.callgraph.impl.Util;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
@@ -33,6 +33,7 @@ import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.TypeReference;
+import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.io.CommandLine;
 
 import java.io.IOException;
@@ -55,11 +56,11 @@ public class ScopeFileCallGraph {
    * 
    * @throws IOException
    * @throws ClassHierarchyException
-   * @throws CallGraphBuilderCancelException
+   * @throws CancelException
    * @throws IllegalArgumentException
    */
   public static void main(String[] args) throws IOException, ClassHierarchyException, IllegalArgumentException,
-      CallGraphBuilderCancelException {
+      CancelException {
     long start = System.currentTimeMillis();
     Properties p = CommandLine.parse(args);
     String scopeFile = p.getProperty("scopeFile");
@@ -78,15 +79,22 @@ public class ScopeFileCallGraph {
     AnalysisOptions options = new AnalysisOptions();
     Iterable<Entrypoint> entrypoints = entryClass != null ? makePublicEntrypoints(cha, entryClass) : Util.makeMainEntrypoints(cha, mainClass);
     options.setEntrypoints(entrypoints);
+    // For a CHA call graph
+//    CHACallGraph CG = new CHACallGraph(cha);
+//    CG.init(entrypoints);
+    // For other call graphs
     // you can dial down reflection handling if you like
 //    options.setReflectionOptions(ReflectionOptions.NONE);
     AnalysisCache cache = new AnalysisCacheImpl();
     // other builders can be constructed with different Util methods
     CallGraphBuilder<InstanceKey> builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha);
+//    CallGraphBuilder<InstanceKey> builder  = Util.makeZeroCFABuilder(Language.JAVA, options, cache, cha);
 //    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);
+//    CallGraphBuilder builder = Util.makeVanillaNCFABuilder(2, options, cache, cha, scope);
 //    CallGraphBuilder builder = Util.makeVanillaNCFABuilder(2, options, cache, cha, scope);
     System.out.println("building call graph...");
     CallGraph cg = builder.makeCallGraph(options, null);
+
     long end = System.currentTimeMillis();
     System.out.println("done");
     System.out.println("took " + (end-start) + "ms");
