@@ -31,7 +31,6 @@ import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.collections.Pair;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;

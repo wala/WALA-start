@@ -26,7 +26,6 @@ import com.ibm.wala.properties.WalaProperties;
 import com.ibm.wala.ssa.SymbolTable;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.io.CommandLine;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -53,7 +52,9 @@ public class SourceDirCallGraph {
    * <p>Example args: -sourceDir /tmp/srcTest -mainClass LFoo
    */
   public static void main(String[] args)
-      throws ClassHierarchyException, IllegalArgumentException, CallGraphBuilderCancelException,
+      throws ClassHierarchyException,
+          IllegalArgumentException,
+          CallGraphBuilderCancelException,
           IOException {
     System.out.println(Arrays.toString(args));
     new SourceDirCallGraph()
@@ -71,7 +72,9 @@ public class SourceDirCallGraph {
   }
 
   public void doit(String[] args, Processor processor)
-      throws ClassHierarchyException, IllegalArgumentException, CallGraphBuilderCancelException,
+      throws ClassHierarchyException,
+          IllegalArgumentException,
+          CallGraphBuilderCancelException,
           IOException {
     long start = System.currentTimeMillis();
     Properties p = CommandLine.parse(args);
