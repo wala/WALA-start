@@ -8,7 +8,6 @@ import com.ibm.wala.ipa.callgraph.CallGraph;
 import com.ibm.wala.ipa.callgraph.CallGraphStats;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.WalaException;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;

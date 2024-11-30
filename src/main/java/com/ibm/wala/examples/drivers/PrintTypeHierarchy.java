@@ -15,12 +15,9 @@ import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
-
 import java.io.IOException;
 
-/**
- * Simple WALA driver to build and print out a {@link ClassHierarchy}.
- */
+/** Simple WALA driver to build and print out a {@link ClassHierarchy}. */
 public class PrintTypeHierarchy {
 
   public static void main(String[] args) throws IOException, ClassHierarchyException {

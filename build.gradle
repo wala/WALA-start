@@ -1,8 +1,16 @@
-apply plugin: 'java-library'
-apply plugin: 'application'
-apply plugin: 'eclipse'
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'eclipse'
+    id("com.diffplug.spotless") version "6.25.0"
+}
 
-sourceCompatibility = 11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
 version = '0.1'
 jar {
     manifest {
@@ -39,4 +47,11 @@ if (project.hasProperty('mainClass')) {
 } else {
     // use a default
     mainClassName = "com.ibm.wala.examples.drivers.PDFTypeHierarchy"
+}
+
+spotless {
+    java {
+        // apply a specific flavor of google-java-format
+        googleJavaFormat()
+    }
 }
