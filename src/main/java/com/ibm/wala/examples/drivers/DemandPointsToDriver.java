@@ -2,6 +2,7 @@ package com.ibm.wala.examples.drivers;
 
 import com.ibm.wala.classLoader.CallSiteReference;
 import com.ibm.wala.classLoader.Language;
+import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.demandpa.alg.DemandRefinementPointsTo;
 import com.ibm.wala.demandpa.alg.refinepolicy.NeverRefineCGPolicy;
 import com.ibm.wala.demandpa.alg.refinepolicy.NeverRefineFieldsPolicy;
@@ -30,8 +31,6 @@ import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.collections.Pair;
-import com.ibm.wala.util.config.AnalysisScopeReader;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -49,17 +48,17 @@ public class DemandPointsToDriver {
       throws IOException, ClassHierarchyException, CancelException {
     // Construct the AnalysisScope from the class path.
     String classpath = args[0];
-    AnalysisScope scope = AnalysisScopeReader.makeJavaBinaryAnalysisScope(classpath, null);
+    AnalysisScope scope = AnalysisScopeReader.instance.makeJavaBinaryAnalysisScope(classpath, null);
     // We need a baseline call graph.  Here we use a CHACallGraph based on a ClassHierarchy.
     ClassHierarchy cha = ClassHierarchyFactory.make(scope);
     CHACallGraph chaCG = new CHACallGraph(cha);
-    chaCG.init(Util.makeMainEntrypoints(scope, cha));
+    chaCG.init(Util.makeMainEntrypoints(cha));
     AnalysisOptions options = new AnalysisOptions();
     IAnalysisCacheView cache = new AnalysisCacheImpl();
     // We also need a heap model to create InstanceKeys for allocation sites, etc.
     // Here we use a 0-1 CFA builder, which will give a heap abstraction similar to
     // context-insensitive Andersen's analysis
-    HeapModel heapModel = Util.makeZeroOneCFABuilder(Language.JAVA, options, cache, cha, scope);
+    HeapModel heapModel = Util.makeZeroOneCFABuilder(Language.JAVA, options, cache, cha);
     // The MemoryAccessMap helps the demand analysis find matching field reads and writes
     MemoryAccessMap mam = new SimpleMemoryAccessMap(chaCG, heapModel, false);
     // The StateMachineFactory helps in tracking additional states like calling contexts.
