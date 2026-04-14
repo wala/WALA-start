@@ -11,11 +11,11 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            java: 11
+            java: 17
           - os: ubuntu-latest
-            java: 11
+            java: 17
           - os: windows-latest
-            java: 11
+            java: 17
       fail-fast: true
     runs-on: ${{ matrix.os }}
     steps:
