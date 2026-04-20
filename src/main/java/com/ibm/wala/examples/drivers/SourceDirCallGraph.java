@@ -19,12 +19,12 @@ import com.ibm.wala.ipa.callgraph.CallGraphStats;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
 import com.ibm.wala.ipa.callgraph.IAnalysisCacheView;
 import com.ibm.wala.ipa.callgraph.impl.Util;
-import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.properties.WalaProperties;
 import com.ibm.wala.ssa.SymbolTable;
 import com.ibm.wala.types.ClassLoaderReference;
+import com.ibm.wala.util.WalaException;
 import com.ibm.wala.util.io.CommandLine;
 import java.io.File;
 import java.io.IOException;
@@ -52,10 +52,7 @@ public class SourceDirCallGraph {
    * <p>Example args: -sourceDir /tmp/srcTest -mainClass LFoo
    */
   public static void main(String[] args)
-      throws ClassHierarchyException,
-          IllegalArgumentException,
-          CallGraphBuilderCancelException,
-          IOException {
+      throws CallGraphBuilderCancelException, IOException, WalaException {
     System.out.println(Arrays.toString(args));
     new SourceDirCallGraph()
         .doit(
@@ -72,10 +69,7 @@ public class SourceDirCallGraph {
   }
 
   public void doit(String[] args, Processor processor)
-      throws ClassHierarchyException,
-          IllegalArgumentException,
-          CallGraphBuilderCancelException,
-          IOException {
+      throws CallGraphBuilderCancelException, IOException, WalaException {
     long start = System.currentTimeMillis();
     Properties p = CommandLine.parse(args);
     String sourceDir = p.getProperty("sourceDir");
