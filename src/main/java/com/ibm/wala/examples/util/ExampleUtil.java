@@ -1,33 +1,29 @@
 package com.ibm.wala.examples.util;
 
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
-import com.ibm.wala.util.config.FileOfClasses;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import com.ibm.wala.util.config.PatternsFilter;
+import java.util.List;
 
 public class ExampleUtil {
 
   // more aggressive exclusions to avoid library blowup
   // in interprocedural tests
-  private static final String EXCLUSIONS =
-      "java\\/awt\\/.*\n"
-          + "javax\\/swing\\/.*\n"
-          + "sun\\/awt\\/.*\n"
-          + "sun\\/swing\\/.*\n"
-          + "com\\/sun\\/.*\n"
-          + "sun\\/.*\n"
-          + "org\\/netbeans\\/.*\n"
-          + "org\\/openide\\/.*\n"
-          + "com\\/ibm\\/crypto\\/.*\n"
-          + "com\\/ibm\\/security\\/.*\n"
-          + "org\\/apache\\/xerces\\/.*\n"
-          + "java\\/security\\/.*\n"
-          + "";
+  private static final List<String> EXCLUSIONS =
+      List.of(
+          "java\\/awt\\/.*",
+          "javax\\/swing\\/.*",
+          "sun\\/awt\\/.*",
+          "sun\\/swing\\/.*",
+          "com\\/sun\\/.*",
+          "sun\\/.*",
+          "org\\/netbeans\\/.*",
+          "org\\/openide\\/.*",
+          "com\\/ibm\\/crypto\\/.*",
+          "com\\/ibm\\/security\\/.*",
+          "org\\/apache\\/xerces\\/.*",
+          "java\\/security\\/.*");
 
-  public static void addDefaultExclusions(AnalysisScope scope)
-      throws UnsupportedEncodingException, IOException {
-    scope.setExclusions(
-        new FileOfClasses(new ByteArrayInputStream(ExampleUtil.EXCLUSIONS.getBytes("UTF-8"))));
+  public static void addDefaultExclusions(AnalysisScope scope) {
+    scope.setExclusions(new PatternsFilter(EXCLUSIONS.stream()));
   }
 }
