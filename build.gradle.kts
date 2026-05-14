@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-  val walaVersion = "1.7.1"
+  val walaVersion = "1.7.2"
 
   implementation("com.ibm.wala:com.ibm.wala.shrike:${walaVersion}")
   implementation("com.ibm.wala:com.ibm.wala.util:${walaVersion}")
