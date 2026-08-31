@@ -2,7 +2,7 @@ plugins {
   `java-library`
   application
   eclipse
-  id("com.diffplug.spotless") version "8.10.0"
+  id("com.diffplug.spotless") version "8.10.1"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
