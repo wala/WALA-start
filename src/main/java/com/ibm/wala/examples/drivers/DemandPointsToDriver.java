@@ -1,7 +1,7 @@
 package com.ibm.wala.examples.drivers;
 
 import com.ibm.wala.classLoader.CallSiteReference;
-import com.ibm.wala.classLoader.Language;
+import com.ibm.wala.classLoader.JavaLanguage;
 import com.ibm.wala.core.util.config.AnalysisScopeReader;
 import com.ibm.wala.demandpa.alg.DemandRefinementPointsTo;
 import com.ibm.wala.demandpa.alg.refinepolicy.NeverRefineCGPolicy;
@@ -58,7 +58,7 @@ public class DemandPointsToDriver {
     // We also need a heap model to create InstanceKeys for allocation sites, etc.
     // Here we use a 0-1 CFA builder, which will give a heap abstraction similar to
     // context-insensitive Andersen's analysis
-    HeapModel heapModel = Util.makeZeroOneCFABuilder(Language.JAVA, options, cache, cha);
+    HeapModel heapModel = Util.makeZeroOneCFABuilder(JavaLanguage.get(), options, cache, cha);
     // The MemoryAccessMap helps the demand analysis find matching field reads and writes
     MemoryAccessMap mam = new SimpleMemoryAccessMap(chaCG, heapModel, false);
     // The StateMachineFactory helps in tracking additional states like calling contexts.

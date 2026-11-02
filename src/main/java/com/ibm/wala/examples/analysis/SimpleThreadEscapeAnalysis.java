@@ -16,7 +16,7 @@ import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IField;
 import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.classLoader.JarFileModule;
-import com.ibm.wala.classLoader.Language;
+import com.ibm.wala.classLoader.JavaLanguage;
 import com.ibm.wala.client.AbstractAnalysisEngine;
 import com.ibm.wala.examples.util.ExampleUtil;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
@@ -91,7 +91,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
   @Override
   protected CallGraphBuilder getCallGraphBuilder(
       IClassHierarchy cha, AnalysisOptions options, IAnalysisCacheView cache) {
-    return Util.makeZeroCFABuilder(Language.JAVA, options, cache, cha, scope);
+    return Util.makeZeroCFABuilder(JavaLanguage.get(), options, cache, cha);
   }
 
   /**
@@ -193,7 +193,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
     //
     // entrypoints are where analysis starts
     //
-    Iterable<Entrypoint> roots = Util.makeMainEntrypoints(getScope(), cha, applicationMainClass);
+    Iterable<Entrypoint> roots = Util.makeMainEntrypoints(cha, applicationMainClass);
 
     //
     // analysis options controls aspects of call graph construction
@@ -276,7 +276,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
       newKeys.clear();
       for (Iterator<InstanceKey> keys = escapingInstanceKeys.iterator(); keys.hasNext(); ) {
         InstanceKey key = keys.next();
-        IClass type = key.getConcreteType();
+        IClass type = key.concreteType();
         if (type.isReferenceType()) {
           if (type.isArrayClass()) {
             if (((ArrayClass) type).getElementClass() != null) {
@@ -316,7 +316,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
     Set<IClass> escapingTypes = HashSetFactory.make();
     for (Iterator<InstanceKey> keys = escapingInstanceKeys.iterator(); keys.hasNext(); ) {
       InstanceKey key = keys.next();
-      escapingTypes.add(key.getConcreteType());
+      escapingTypes.add(key.concreteType());
     }
 
     return escapingTypes;

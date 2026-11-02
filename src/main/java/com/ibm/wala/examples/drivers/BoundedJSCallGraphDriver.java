@@ -27,7 +27,7 @@ public class BoundedJSCallGraphDriver {
     FieldBasedCGUtil f = new FieldBasedCGUtil(new CAstRhinoTranslatorFactory());
     FieldBasedCallGraphBuilder.CallGraphResult results =
         f.buildScriptDirBoundedCG(scriptDir, new NullProgressMonitor(), false, bound);
-    CallGraph CG = results.getCallGraph();
+    CallGraph CG = results.callGraph();
     System.out.println(CallGraphStats.getStats(CG));
     System.out.println((new CallGraph2JSON()).serialize(CG));
   }

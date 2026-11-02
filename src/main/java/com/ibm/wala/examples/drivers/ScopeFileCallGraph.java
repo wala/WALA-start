@@ -91,7 +91,8 @@ public class ScopeFileCallGraph {
     // other builders can be constructed with different Util methods
     CallGraphBuilder<InstanceKey> builder =
         Util.makeZeroOneContainerCFABuilder(options, cache, cha);
-    //    CallGraphBuilder<InstanceKey> builder  = Util.makeZeroCFABuilder(Language.JAVA, options,
+    //    CallGraphBuilder<InstanceKey> builder  = Util.makeZeroCFABuilder(JavaLanguage.get(),
+    // options,
     // cache, cha);
     //    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);
     //    CallGraphBuilder builder = Util.makeVanillaNCFABuilder(2, options, cache, cha, scope);

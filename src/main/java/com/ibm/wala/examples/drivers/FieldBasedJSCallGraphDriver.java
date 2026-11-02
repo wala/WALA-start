@@ -31,7 +31,7 @@ public class FieldBasedJSCallGraphDriver {
     URL url = path.toUri().toURL();
     FieldBasedCallGraphBuilder.CallGraphResult results =
         f.buildScriptCG(url, FieldBasedCGUtil.BuilderType.OPTIMISTIC_WORKLIST, null, false);
-    CallGraph CG = results.getCallGraph();
+    CallGraph CG = results.callGraph();
     System.out.println(CallGraphStats.getStats(CG));
     System.out.println((new CallGraph2JSON()).serialize(CG));
   }
