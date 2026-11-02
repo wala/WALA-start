@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class BoundedJSCallGraphDriver {
+public final class BoundedJSCallGraphDriver {
 
   private BoundedJSCallGraphDriver() {}
 

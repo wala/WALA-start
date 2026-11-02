@@ -13,7 +13,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FieldBasedJSCallGraphDriver {
+public final class FieldBasedJSCallGraphDriver {
 
   private FieldBasedJSCallGraphDriver() {}
 

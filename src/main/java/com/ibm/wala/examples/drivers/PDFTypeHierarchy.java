@@ -36,7 +36,7 @@ import java.util.function.Predicate;
  *
  * @author sfink
  */
-public class PDFTypeHierarchy {
+public final class PDFTypeHierarchy {
   // This example takes one command-line argument, so args[1] should be the "-classpath" parameter
   static final int CLASSPATH_INDEX = 1;
 

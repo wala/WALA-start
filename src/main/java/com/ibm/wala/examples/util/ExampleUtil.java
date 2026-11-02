@@ -4,7 +4,7 @@ import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.util.config.PatternsFilter;
 import java.util.List;
 
-public class ExampleUtil {
+public final class ExampleUtil {
 
   // more aggressive exclusions to avoid library blowup
   // in interprocedural tests

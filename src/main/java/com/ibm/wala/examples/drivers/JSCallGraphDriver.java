@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JSCallGraphDriver {
+public final class JSCallGraphDriver {
 
   private JSCallGraphDriver() {}
 

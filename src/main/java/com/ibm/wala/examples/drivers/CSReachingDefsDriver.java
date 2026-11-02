@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /** Driver for running {@link ContextSensitiveReachingDefs} */
-public class CSReachingDefsDriver {
+public final class CSReachingDefsDriver {
 
   private CSReachingDefsDriver() {}
 
