@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 
 public class BoundedJSCallGraphDriver {
 
+  private BoundedJSCallGraphDriver() {}
+
   /**
    * Driver for building indirection-bounded approximate call graphs.
    *

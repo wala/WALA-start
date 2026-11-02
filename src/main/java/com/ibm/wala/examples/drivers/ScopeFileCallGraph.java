@@ -45,6 +45,8 @@ import java.util.Properties;
  */
 public class ScopeFileCallGraph {
 
+  private ScopeFileCallGraph() {}
+
   /**
    * Usage: ScopeFileCallGraph -scopeFile file_path [-entryClass class_name | -mainClass class_name]
    *

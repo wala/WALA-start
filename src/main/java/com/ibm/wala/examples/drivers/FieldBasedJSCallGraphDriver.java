@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 
 public class FieldBasedJSCallGraphDriver {
 
+  private FieldBasedJSCallGraphDriver() {}
+
   /**
    * Usage: JSCallGraphDriver path_to_js_file
    *

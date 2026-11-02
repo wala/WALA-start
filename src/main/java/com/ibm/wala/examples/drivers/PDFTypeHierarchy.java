@@ -40,6 +40,8 @@ public class PDFTypeHierarchy {
   // This example takes one command-line argument, so args[1] should be the "-classpath" parameter
   static final int CLASSPATH_INDEX = 1;
 
+  private PDFTypeHierarchy() {}
+
   public static void main(String[] args) throws IOException {
     run(args);
   }

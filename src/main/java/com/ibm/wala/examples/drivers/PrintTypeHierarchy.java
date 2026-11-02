@@ -20,6 +20,8 @@ import java.io.IOException;
 /** Simple WALA driver to build and print out a {@link ClassHierarchy}. */
 public class PrintTypeHierarchy {
 
+  private PrintTypeHierarchy() {}
+
   public static void main(String[] args) throws IOException, ClassHierarchyException {
     String classpath = args[0];
     AnalysisScope scope = AnalysisScopeReader.instance.makeJavaBinaryAnalysisScope(classpath, null);

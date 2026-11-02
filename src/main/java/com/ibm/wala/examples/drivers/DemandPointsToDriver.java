@@ -40,6 +40,8 @@ import java.util.Iterator;
  */
 public class DemandPointsToDriver {
 
+  private DemandPointsToDriver() {}
+
   /**
    * Shows how to run the demand-driven points-to analysis. First and only command-line argument is
    * the classpath

@@ -23,6 +23,8 @@ public class ExampleUtil {
           "org\\/apache\\/xerces\\/.*",
           "java\\/security\\/.*");
 
+  private ExampleUtil() {}
+
   public static void addDefaultExclusions(AnalysisScope scope) {
     scope.setExclusions(new PatternsFilter(EXCLUSIONS.stream()));
   }

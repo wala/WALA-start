@@ -31,6 +31,8 @@ import java.util.Properties;
 /** Driver for running {@link ContextSensitiveReachingDefs} */
 public class CSReachingDefsDriver {
 
+  private CSReachingDefsDriver() {}
+
   /**
    * Usage: CSReachingDefsDriver -scopeFile file_path -mainClass class_name
    *

@@ -40,6 +40,8 @@ public class ConstructAllIRs {
   /** Counter for wiping soft caches */
   private static int wipeCount = 0;
 
+  private ConstructAllIRs() {}
+
   /**
    * First command-line argument should be location of scope file for application to analyze
    *

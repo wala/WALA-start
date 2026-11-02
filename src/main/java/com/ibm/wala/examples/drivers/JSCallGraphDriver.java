@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 
 public class JSCallGraphDriver {
 
+  private JSCallGraphDriver() {}
+
   /**
    * Usage: JSCallGraphDriver path_to_js_file
    *
