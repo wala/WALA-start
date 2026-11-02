@@ -37,11 +37,6 @@ public class CSReachingDefsDriver {
    * Usage: CSReachingDefsDriver -scopeFile file_path -mainClass class_name
    *
    * <p>Uses main() method of class_name as entrypoint.
-   *
-   * @throws IOException
-   * @throws ClassHierarchyException
-   * @throws CallGraphBuilderCancelException
-   * @throws IllegalArgumentException
    */
   public static void main(String[] args)
       throws IOException,

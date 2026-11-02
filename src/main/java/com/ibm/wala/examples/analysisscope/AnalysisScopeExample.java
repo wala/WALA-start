@@ -13,7 +13,6 @@ public class AnalysisScopeExample {
   /**
    * @param classPath paths of jars to include in analysis scope, formatted as a Java classpath
    * @return AnaylsisScope object created by makeJavaBinaryAnalysisScope
-   * @throws IOException
    */
   AnalysisScope makeAnalysisScope(String classPath) throws IOException {
     return AnalysisScopeReader.instance.makeJavaBinaryAnalysisScope(classPath, null);
@@ -23,7 +22,6 @@ public class AnalysisScopeExample {
    * @param scopeFilePath Location of a scope file in string form
    * @param exclusionFilePath location of an exception file
    * @return return an analysis scope object
-   * @throws IOException
    */
   AnalysisScope makeAnalysisScope(String scopeFilePath, String exclusionFilePath)
       throws IOException {

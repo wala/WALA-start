@@ -155,12 +155,7 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
     return result;
   }
 
-  /**
-   * The heart of the analysis.
-   *
-   * @throws CancelException
-   * @throws IllegalArgumentException
-   */
+  /** The heart of the analysis. */
   public Set<IClass> gatherThreadEscapingClasses()
       throws IOException, ClassHierarchyException, IllegalArgumentException, CancelException {
 
@@ -328,9 +323,6 @@ public class SimpleThreadEscapeAnalysis extends AbstractAnalysisEngine {
    * exceptions: final fields do not have races since there are no writes to them, and volatile
    * fields have atomic read and write semantics provided by the VM. Hence, this piece of code
    * produces a list of all other fields.
-   *
-   * @throws CancelException
-   * @throws IllegalArgumentException
    */
   public static void main(String[] args)
       throws IOException, ClassHierarchyException, IllegalArgumentException, CancelException {

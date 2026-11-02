@@ -42,12 +42,7 @@ public class ConstructAllIRs {
 
   private ConstructAllIRs() {}
 
-  /**
-   * First command-line argument should be location of scope file for application to analyze
-   *
-   * @throws IOException
-   * @throws ClassHierarchyException
-   */
+  /** First command-line argument should be location of scope file for application to analyze */
   public static void main(String[] args) throws IOException, ClassHierarchyException {
     String scopeFile = args[0];
 

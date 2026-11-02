@@ -52,11 +52,6 @@ public class ScopeFileCallGraph {
    *
    * <p>If given -mainClass, uses main() method of class_name as entrypoint. If given -entryClass,
    * uses all public methods of class_name.
-   *
-   * @throws IOException
-   * @throws ClassHierarchyException
-   * @throws CancelException
-   * @throws IllegalArgumentException
    */
   public static void main(String[] args)
       throws IOException, ClassHierarchyException, IllegalArgumentException, CancelException {

@@ -15,15 +15,7 @@ public class JSCallGraphDriver {
 
   private JSCallGraphDriver() {}
 
-  /**
-   * Usage: JSCallGraphDriver path_to_js_file
-   *
-   * @param args
-   * @throws WalaException
-   * @throws CancelException
-   * @throws IOException
-   * @throws IllegalArgumentException
-   */
+  /** Usage: JSCallGraphDriver path_to_js_file */
   public static void main(String[] args)
       throws IllegalArgumentException, IOException, CancelException, WalaException {
     Path path = Paths.get(args[0]);
