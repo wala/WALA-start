@@ -68,7 +68,7 @@ public final class CSReachingDefsDriver {
     options.setReflectionOptions(ReflectionOptions.NONE);
     AnalysisCache cache = new AnalysisCacheImpl();
     // other builders can be constructed with different Util methods
-    CallGraphBuilder builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha);
+    CallGraphBuilder<?> builder = Util.makeZeroOneContainerCFABuilder(options, cache, cha);
     //	    CallGraphBuilder builder = Util.makeNCFABuilder(2, options, cache, cha, scope);
     //	    CallGraphBuilder builder = Util.makeVanillaNCFABuilder(2, options, cache, cha, scope);
     System.out.println("building call graph...");
