@@ -80,7 +80,7 @@ final class PDFTypeHierarchy {
   }
 
   /** Restrict g to nodes from the Application loader */
-  private static Graph<IClass> pruneForAppLoader(Graph<IClass> g) throws WalaException {
+  private static Graph<IClass> pruneForAppLoader(Graph<IClass> g) {
     Predicate<IClass> f =
         c -> (c.getClassLoader().getReference().equals(ClassLoaderReference.Application));
     return pruneGraph(g, f);
@@ -107,7 +107,7 @@ final class PDFTypeHierarchy {
    * Return a view of an {@link IClassHierarchy} as a {@link Graph}, with edges from classes to
    * immediate subtypes
    */
-  private static Graph<IClass> typeHierarchy2Graph(IClassHierarchy cha) throws WalaException {
+  private static Graph<IClass> typeHierarchy2Graph(IClassHierarchy cha) {
     Graph<IClass> result = SlowSparseNumberedGraph.make();
     for (IClass c : cha) {
       result.addNode(c);

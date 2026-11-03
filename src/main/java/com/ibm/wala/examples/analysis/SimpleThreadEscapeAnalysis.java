@@ -157,8 +157,7 @@ final class SimpleThreadEscapeAnalysis
   }
 
   /** The heart of the analysis. */
-  private Set<IClass> gatherThreadEscapingClasses()
-      throws IOException, ClassHierarchyException, CancelException {
+  private Set<IClass> gatherThreadEscapingClasses() throws IOException, CancelException {
 
     //
     // set the application to analyze
