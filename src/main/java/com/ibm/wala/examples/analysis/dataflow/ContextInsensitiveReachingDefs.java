@@ -73,7 +73,7 @@ class ContextInsensitiveReachingDefs {
   /** generate a numbering of the putstatic instructions */
   @SuppressWarnings("unchecked")
   private OrdinalSetMapping<Pair<CGNode, Integer>> numberPutStatics() {
-    ArrayList<Pair<CGNode, Integer>> putInstrs = new ArrayList<Pair<CGNode, Integer>>();
+    ArrayList<Pair<CGNode, Integer>> putInstrs = new ArrayList<>();
     for (CGNode node : icfg.getCallGraph()) {
       IR ir = node.getIR();
       if (ir == null) {
@@ -100,8 +100,7 @@ class ContextInsensitiveReachingDefs {
         }
       }
     }
-    return new ObjectArrayMapping<Pair<CGNode, Integer>>(
-        putInstrs.toArray(new Pair[0]));
+    return new ObjectArrayMapping<Pair<CGNode, Integer>>(putInstrs.toArray(new Pair[0]));
   }
 
   private class TransferFunctions
@@ -183,10 +182,9 @@ class ContextInsensitiveReachingDefs {
     // the framework describes the dataflow problem, in particular the underlying graph and the
     // transfer functions
     BitVectorFramework<BasicBlockInContext<IExplodedBasicBlock>, Pair<CGNode, Integer>> framework =
-        new BitVectorFramework<BasicBlockInContext<IExplodedBasicBlock>, Pair<CGNode, Integer>>(
-            icfg, new TransferFunctions(), putInstrNumbering);
+        new BitVectorFramework<>(icfg, new TransferFunctions(), putInstrNumbering);
     BitVectorSolver<BasicBlockInContext<IExplodedBasicBlock>> solver =
-        new BitVectorSolver<BasicBlockInContext<IExplodedBasicBlock>>(framework);
+        new BitVectorSolver<>(framework);
     try {
       solver.solve(null);
     } catch (CancelException e) {

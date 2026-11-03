@@ -69,7 +69,7 @@ class IntraprocReachingDefs {
 
   /** generate a numbering of the putstatic instructions */
   private OrdinalSetMapping<Integer> numberPutStatics() {
-    ArrayList<Integer> putInstrs = new ArrayList<Integer>();
+    ArrayList<Integer> putInstrs = new ArrayList<>();
     IR ir = ecfg.getIR();
     SSAInstruction[] instructions = ir.getInstructions();
     for (int i = 0; i < instructions.length; i++) {
@@ -91,7 +91,7 @@ class IntraprocReachingDefs {
         bv.set(instrNum);
       }
     }
-    return new ObjectArrayMapping<Integer>(putInstrs.toArray(new Integer[0]));
+    return new ObjectArrayMapping<>(putInstrs.toArray(new Integer[0]));
   }
 
   private class TransferFunctions
@@ -150,10 +150,8 @@ class IntraprocReachingDefs {
     // the framework describes the dataflow problem, in particular the underlying graph and the
     // transfer functions
     BitVectorFramework<IExplodedBasicBlock, Integer> framework =
-        new BitVectorFramework<IExplodedBasicBlock, Integer>(
-            ecfg, new TransferFunctions(), putInstrNumbering);
-    BitVectorSolver<IExplodedBasicBlock> solver =
-        new BitVectorSolver<IExplodedBasicBlock>(framework);
+        new BitVectorFramework<>(ecfg, new TransferFunctions(), putInstrNumbering);
+    BitVectorSolver<IExplodedBasicBlock> solver = new BitVectorSolver<>(framework);
     try {
       solver.solve(null);
     } catch (CancelException e) {
