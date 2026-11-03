@@ -101,7 +101,7 @@ class ContextInsensitiveReachingDefs {
       }
     }
     return new ObjectArrayMapping<Pair<CGNode, Integer>>(
-        putInstrs.toArray(new Pair[putInstrs.size()]));
+        putInstrs.toArray(new Pair[0]));
   }
 
   private class TransferFunctions

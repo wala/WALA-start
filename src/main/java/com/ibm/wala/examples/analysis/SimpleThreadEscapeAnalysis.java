@@ -140,7 +140,7 @@ final class SimpleThreadEscapeAnalysis
     // find jars from chosen JRE lib path
     collectJars(new File(javaHomePath), jarFiles);
 
-    return jarFiles.toArray(new JarFile[jarFiles.size()]);
+    return jarFiles.toArray(new JarFile[0]);
   }
 
   /**

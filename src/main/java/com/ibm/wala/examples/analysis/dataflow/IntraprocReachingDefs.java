@@ -91,7 +91,7 @@ class IntraprocReachingDefs {
         bv.set(instrNum);
       }
     }
-    return new ObjectArrayMapping<Integer>(putInstrs.toArray(new Integer[putInstrs.size()]));
+    return new ObjectArrayMapping<Integer>(putInstrs.toArray(new Integer[0]));
   }
 
   private class TransferFunctions
