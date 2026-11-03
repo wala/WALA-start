@@ -6,8 +6,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * This class shows two ways to create an {@link AnalysisScope}. for more information, check out
- * https://github.com/wala/WALA/wiki/Analysis-Scope
+ * This class shows two ways to create an {@link AnalysisScope}.
+ *
+ * @see <a href="https://github.com/wala/WALA/wiki/Analysis-Scope">Analysis Scope</a>
  */
 class AnalysisScopeExample {
   /**
