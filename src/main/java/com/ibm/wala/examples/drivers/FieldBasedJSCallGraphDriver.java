@@ -18,8 +18,7 @@ final class FieldBasedJSCallGraphDriver {
   private FieldBasedJSCallGraphDriver() {}
 
   /** Usage: JSCallGraphDriver path_to_js_file */
-  public static void main(String[] args)
-      throws IllegalArgumentException, IOException, CancelException, WalaException {
+  public static void main(String[] args) throws IOException, CancelException, WalaException {
     Path path = Paths.get(args[0]);
     FieldBasedCGUtil f = new FieldBasedCGUtil(new CAstRhinoTranslatorFactory());
     URL url = path.toUri().toURL();

@@ -39,10 +39,7 @@ final class CSReachingDefsDriver {
    * <p>Uses main() method of class_name as entrypoint.
    */
   public static void main(String[] args)
-      throws IOException,
-          ClassHierarchyException,
-          IllegalArgumentException,
-          CallGraphBuilderCancelException {
+      throws IOException, ClassHierarchyException, CallGraphBuilderCancelException {
     long start = System.currentTimeMillis();
     Properties p = CommandLine.parse(args);
     String scopeFile = p.getProperty("scopeFile");

@@ -16,8 +16,7 @@ final class JSCallGraphDriver {
   private JSCallGraphDriver() {}
 
   /** Usage: JSCallGraphDriver path_to_js_file */
-  public static void main(String[] args)
-      throws IllegalArgumentException, IOException, CancelException, WalaException {
+  public static void main(String[] args) throws IOException, CancelException, WalaException {
     Path path = Paths.get(args[0]);
     JSCallGraphUtil.setTranslatorFactory(new CAstRhinoTranslatorFactory());
     CallGraph CG =

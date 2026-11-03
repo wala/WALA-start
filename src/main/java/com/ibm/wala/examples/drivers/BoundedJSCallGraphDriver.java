@@ -22,8 +22,7 @@ final class BoundedJSCallGraphDriver {
    *
    * <p>Usage: BoundedJSCallGraphDriver script_directory bound
    */
-  public static void main(String[] args)
-      throws IllegalArgumentException, IOException, CancelException, WalaException {
+  public static void main(String[] args) throws IOException, CancelException, WalaException {
     Path scriptDir = Paths.get(args[0]);
     int bound = Integer.parseInt(args[1]);
     FieldBasedCGUtil f = new FieldBasedCGUtil(new CAstRhinoTranslatorFactory());

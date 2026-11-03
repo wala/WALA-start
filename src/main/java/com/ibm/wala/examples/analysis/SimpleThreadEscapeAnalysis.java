@@ -159,7 +159,7 @@ final class SimpleThreadEscapeAnalysis
 
   /** The heart of the analysis. */
   private Set<IClass> gatherThreadEscapingClasses()
-      throws IOException, ClassHierarchyException, IllegalArgumentException, CancelException {
+      throws IOException, ClassHierarchyException, CancelException {
 
     //
     // set the application to analyze
@@ -328,7 +328,7 @@ final class SimpleThreadEscapeAnalysis
    * produces a list of all other fields.
    */
   public static void main(String[] args)
-      throws IOException, ClassHierarchyException, IllegalArgumentException, CancelException {
+      throws IOException, ClassHierarchyException, CancelException {
     String mainClassName = args[0];
 
     Set<JarFile> jars = HashSetFactory.make();
