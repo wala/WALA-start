@@ -99,7 +99,7 @@ final class SimpleThreadEscapeAnalysis
    * Given a root path, add it to the set if it is a jar, or traverse it recursively if it is a
    * directory.
    */
-  private void collectJars(File f, Set<JarFile> result) throws IOException {
+  private static void collectJars(File f, Set<JarFile> result) throws IOException {
     if (f.isDirectory()) {
       File[] files = f.listFiles();
       if (files != null) {
@@ -113,7 +113,7 @@ final class SimpleThreadEscapeAnalysis
   }
 
   /** Collect the set of JarFiles that constitute the system libraries of the running JRE. */
-  private JarFile[] getSystemJars() throws IOException {
+  private static JarFile[] getSystemJars() throws IOException {
     String javaHomePath = "garbage";
     Set<JarFile> jarFiles = HashSetFactory.make();
 
