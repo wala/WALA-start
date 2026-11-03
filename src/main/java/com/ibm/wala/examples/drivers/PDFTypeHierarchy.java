@@ -36,9 +36,9 @@ import java.util.function.Predicate;
  *
  * @author sfink
  */
-public final class PDFTypeHierarchy {
+final class PDFTypeHierarchy {
   // This example takes one command-line argument, so args[1] should be the "-classpath" parameter
-  static final int CLASSPATH_INDEX = 1;
+  private static final int CLASSPATH_INDEX = 1;
 
   private PDFTypeHierarchy() {}
 
@@ -46,7 +46,7 @@ public final class PDFTypeHierarchy {
     run(args);
   }
 
-  public static Process run(String[] args) throws IOException {
+  private static Process run(String[] args) throws IOException {
     try {
       validateCommandLine(args);
       String classpath = args[CLASSPATH_INDEX];
@@ -74,13 +74,13 @@ public final class PDFTypeHierarchy {
     }
   }
 
-  public static <T> Graph<T> pruneGraph(Graph<T> g, Predicate<T> f) {
+  private static <T> Graph<T> pruneGraph(Graph<T> g, Predicate<T> f) {
     Collection<T> slice = GraphSlicer.slice(g, f);
     return GraphSlicer.prune(g, new CollectionFilter<>(slice));
   }
 
   /** Restrict g to nodes from the Application loader */
-  public static Graph<IClass> pruneForAppLoader(Graph<IClass> g) throws WalaException {
+  private static Graph<IClass> pruneForAppLoader(Graph<IClass> g) throws WalaException {
     Predicate<IClass> f =
         c -> (c.getClassLoader().getReference().equals(ClassLoaderReference.Application));
     return pruneGraph(g, f);
@@ -93,7 +93,7 @@ public final class PDFTypeHierarchy {
    *
    * @throws UnsupportedOperationException if command-line is malformed.
    */
-  public static void validateCommandLine(String[] args) {
+  private static void validateCommandLine(String[] args) {
     if (args.length < 2) {
       throw new UnsupportedOperationException("must have at least 2 command-line arguments");
     }
@@ -107,7 +107,7 @@ public final class PDFTypeHierarchy {
    * Return a view of an {@link IClassHierarchy} as a {@link Graph}, with edges from classes to
    * immediate subtypes
    */
-  public static Graph<IClass> typeHierarchy2Graph(IClassHierarchy cha) throws WalaException {
+  private static Graph<IClass> typeHierarchy2Graph(IClassHierarchy cha) throws WalaException {
     Graph<IClass> result = SlowSparseNumberedGraph.make();
     for (IClass c : cha) {
       result.addNode(c);

@@ -43,7 +43,7 @@ import java.util.Properties;
  * Driver that constructs a call graph for an application specified via a scope file. Useful for
  * getting some code to copy-paste.
  */
-public final class ScopeFileCallGraph {
+final class ScopeFileCallGraph {
 
   private ScopeFileCallGraph() {}
 

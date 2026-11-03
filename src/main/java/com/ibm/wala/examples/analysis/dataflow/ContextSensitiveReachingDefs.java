@@ -82,7 +82,7 @@ public class ContextSensitiveReachingDefs {
 
     private final ReachingDefsDomain domain;
 
-    protected ReachingDefsFlowFunctions(ReachingDefsDomain domain) {
+    ReachingDefsFlowFunctions(ReachingDefsDomain domain) {
       this.domain = domain;
     }
 

@@ -38,7 +38,7 @@ import java.util.Iterator;
 /**
  * Example driver for using the demand-driven points-to analysis, {@link DemandRefinementPointsTo}
  */
-public final class DemandPointsToDriver {
+final class DemandPointsToDriver {
 
   private DemandPointsToDriver() {}
 

@@ -65,11 +65,11 @@ public class SourceDirCallGraph {
             });
   }
 
-  protected ClassLoaderFactory getLoaderFactory(AnalysisScope scope) {
+  private ClassLoaderFactory getLoaderFactory(AnalysisScope scope) {
     return new ECJClassLoaderFactory(SSAOptions.defaultOptions(), scope.getExclusions());
   }
 
-  public void doit(String[] args, Processor processor)
+  private void doit(String[] args, Processor processor)
       throws CallGraphBuilderCancelException, IOException, WalaException {
     long start = System.currentTimeMillis();
     Properties p = CommandLine.parse(args);
@@ -116,7 +116,7 @@ public class SourceDirCallGraph {
     processor.process(cg, builder, end - start);
   }
 
-  protected Iterable<Entrypoint> getEntrypoints(String mainClass, IClassHierarchy cha) {
+  private Iterable<Entrypoint> getEntrypoints(String mainClass, IClassHierarchy cha) {
     return Util.makeMainEntrypoints(JavaSourceAnalysisScope.SOURCE, cha, new String[] {mainClass});
   }
 }

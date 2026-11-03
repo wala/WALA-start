@@ -73,7 +73,7 @@ import java.util.jar.JarFile;
  *
  * @author Julian Dolby
  */
-public class SimpleThreadEscapeAnalysis
+final class SimpleThreadEscapeAnalysis
     extends AbstractAnalysisEngine<InstanceKey, CallGraphBuilder<InstanceKey>, Void> {
 
   private final Set<JarFile> applicationJarFiles;
@@ -84,7 +84,8 @@ public class SimpleThreadEscapeAnalysis
    * The two input parameters define the program to analyze: the jars of .class files and the main
    * class to start from.
    */
-  public SimpleThreadEscapeAnalysis(Set<JarFile> applicationJarFiles, String applicationMainClass) {
+  private SimpleThreadEscapeAnalysis(
+      Set<JarFile> applicationJarFiles, String applicationMainClass) {
     this.applicationJarFiles = applicationJarFiles;
     this.applicationMainClass = applicationMainClass;
   }
@@ -157,7 +158,7 @@ public class SimpleThreadEscapeAnalysis
   }
 
   /** The heart of the analysis. */
-  public Set<IClass> gatherThreadEscapingClasses()
+  private Set<IClass> gatherThreadEscapingClasses()
       throws IOException, ClassHierarchyException, IllegalArgumentException, CancelException {
 
     //

@@ -29,7 +29,7 @@ import java.io.IOException;
  * An analysis skeleton that simply constructs IRs for all methods in a class hierarchy. Illustrates
  * the use of {@link ReferenceCleanser} to improve running time / reduce memory usage.
  */
-public final class ConstructAllIRs {
+final class ConstructAllIRs {
 
   /** Should we periodically clear out soft reference caches in an attempt to help the GC? */
   private static final boolean PERIODIC_WIPE_SOFT_CACHES = true;

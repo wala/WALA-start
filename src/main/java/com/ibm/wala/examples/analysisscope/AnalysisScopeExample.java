@@ -9,7 +9,7 @@ import java.io.IOException;
  * This class shows two ways to create an {@link AnalysisScope}. for more information, check out
  * https://github.com/wala/WALA/wiki/Analysis-Scope
  */
-public class AnalysisScopeExample {
+class AnalysisScopeExample {
   /**
    * @param classPath paths of jars to include in analysis scope, formatted as a Java classpath
    * @return AnaylsisScope object created by makeJavaBinaryAnalysisScope

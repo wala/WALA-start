@@ -42,7 +42,7 @@ import java.util.Map;
 /**
  * Computes interprocedural reaching definitions for static fields in a context-insensitive manner.
  */
-public class ContextInsensitiveReachingDefs {
+class ContextInsensitiveReachingDefs {
 
   /** the exploded interprocedural control-flow graph on which to compute the analysis */
   private final ExplodedInterproceduralCFG icfg;
@@ -64,7 +64,7 @@ public class ContextInsensitiveReachingDefs {
 
   private static final boolean VERBOSE = true;
 
-  public ContextInsensitiveReachingDefs(ExplodedInterproceduralCFG icfg, IClassHierarchy cha) {
+  ContextInsensitiveReachingDefs(ExplodedInterproceduralCFG icfg, IClassHierarchy cha) {
     this.icfg = icfg;
     this.cha = cha;
     this.putInstrNumbering = numberPutStatics();

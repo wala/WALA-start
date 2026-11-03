@@ -40,7 +40,7 @@ import java.util.Map;
  *
  * @author manu
  */
-public class IntraprocReachingDefs {
+class IntraprocReachingDefs {
 
   /** the exploded control-flow graph on which to compute the analysis */
   private final ExplodedControlFlowGraph ecfg;
@@ -61,7 +61,7 @@ public class IntraprocReachingDefs {
 
   private static final boolean VERBOSE = true;
 
-  public IntraprocReachingDefs(ExplodedControlFlowGraph ecfg, IClassHierarchy cha) {
+  IntraprocReachingDefs(ExplodedControlFlowGraph ecfg, IClassHierarchy cha) {
     this.ecfg = ecfg;
     this.cha = cha;
     this.putInstrNumbering = numberPutStatics();
