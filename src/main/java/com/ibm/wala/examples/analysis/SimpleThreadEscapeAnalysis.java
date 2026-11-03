@@ -30,7 +30,6 @@ import com.ibm.wala.ipa.callgraph.propagation.HeapModel;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
 import com.ibm.wala.ipa.callgraph.propagation.PointerAnalysis;
 import com.ibm.wala.ipa.callgraph.propagation.PointerKey;
-import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.properties.WalaProperties;
 import com.ibm.wala.types.TypeReference;
@@ -313,8 +312,7 @@ final class SimpleThreadEscapeAnalysis
    * fields have atomic read and write semantics provided by the VM. Hence, this piece of code
    * produces a list of all other fields.
    */
-  public static void main(String[] args)
-      throws IOException, ClassHierarchyException, CancelException {
+  public static void main(String[] args) throws IOException, CancelException {
     String mainClassName = args[0];
 
     Set<JarFile> jars = HashSetFactory.make();
