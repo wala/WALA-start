@@ -75,7 +75,7 @@ import java.util.jar.JarFile;
 final class SimpleThreadEscapeAnalysis
     extends AbstractAnalysisEngine<InstanceKey, CallGraphBuilder<InstanceKey>, Void> {
 
-  private final Set<JarFile> applicationJarFiles;
+  private final Set<? extends JarFile> applicationJarFiles;
 
   private final String applicationMainClass;
 
@@ -84,7 +84,7 @@ final class SimpleThreadEscapeAnalysis
    * class to start from.
    */
   private SimpleThreadEscapeAnalysis(
-      Set<JarFile> applicationJarFiles, String applicationMainClass) {
+      Set<? extends JarFile> applicationJarFiles, String applicationMainClass) {
     this.applicationJarFiles = applicationJarFiles;
     this.applicationMainClass = applicationMainClass;
   }
@@ -99,7 +99,7 @@ final class SimpleThreadEscapeAnalysis
    * Given a root path, add it to the set if it is a jar, or traverse it recursively if it is a
    * directory.
    */
-  private static void collectJars(File f, Set<JarFile> result) throws IOException {
+  private static void collectJars(File f, Set<? super JarFile> result) throws IOException {
     if (f.isDirectory()) {
       File[] files = f.listFiles();
       if (files != null) {

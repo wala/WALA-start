@@ -162,7 +162,7 @@ class ContextInsensitiveReachingDefs {
     }
 
     private static boolean isCallToReturnEdge(
-        BasicBlockInContext<IExplodedBasicBlock> src,
+        BasicBlockInContext<? extends IExplodedBasicBlock> src,
         BasicBlockInContext<IExplodedBasicBlock> dst) {
       SSAInstruction srcInst = src.getDelegate().getInstruction();
       return srcInst instanceof SSAAbstractInvokeInstruction && src.getNode().equals(dst.getNode());
