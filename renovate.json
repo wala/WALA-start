@@ -2,5 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "minimumReleaseAge": "1 week",
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "com.ibm.wala:*"
+      ],
+      "minimumReleaseAge": null
+    }
   ]
 }
