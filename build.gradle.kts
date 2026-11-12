@@ -24,19 +24,19 @@ repositories {
 dependencies {
   val walaVersion = "1.9.0"
 
-  implementation("com.ibm.wala:com.ibm.wala.shrike:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.util:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.core:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.cast:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.cast.js:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.cast.js.rhino:${walaVersion}")
+  implementation("com.ibm.wala:com.ibm.wala.shrike:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.util:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.core:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.cast:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.cast.js:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.cast.js.rhino:$walaVersion")
   // Duplicate implementation in original build.gradle
-  // implementation("com.ibm.wala:com.ibm.wala.cast.js:${walaVersion}")
-  // implementation("com.ibm.wala:com.ibm.wala.cast.js.rhino:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.cast.java:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.cast.java.ecj:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.dalvik:${walaVersion}")
-  implementation("com.ibm.wala:com.ibm.wala.scandroid:${walaVersion}")
+  // implementation("com.ibm.wala:com.ibm.wala.cast.js:$walaVersion")
+  // implementation("com.ibm.wala:com.ibm.wala.cast.js.rhino:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.cast.java:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.cast.java.ecj:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.dalvik:$walaVersion")
+  implementation("com.ibm.wala:com.ibm.wala.scandroid:$walaVersion")
   testImplementation("junit:junit:4.+")
 }
 
