@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": true,
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "minimumReleaseAge": "1 week",
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "com.ibm.wala:*"
+      ],
+      "minimumReleaseAge": null
+    }
+  ]
+}
